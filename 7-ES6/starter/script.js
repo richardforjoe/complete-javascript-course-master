@@ -97,7 +97,7 @@ const boxes = document.querySelectorAll('.box');
 //ES5
 
 var boxesArrs = Array.prototype.slice.call(boxes);
-boxesArrs.array.forEach(function(cur) {
-    cur.style.backgroundColor = 'dogerblue';
+boxesArrs.forEach(function(cur) {
+    cur.style.backgroundColor = 'dodgerblue';
     
 });
