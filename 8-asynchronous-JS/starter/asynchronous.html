@@ -9,7 +9,34 @@
 <body>
     <h1>Asynchronous JavaScript</h1>
     <script>
-        
+ //Synchronous code
+
+ const first = () => {
+     console.log('first start')
+     second();
+     console.log('first end')
+ }
+
+ const second = () => {
+     console.log('second start');
+
+ }
+ first();
+
+ const afirst = () => {
+     console.log('afirst start')
+     asecond();
+     console.log('afirst end')
+ }
+
+ const asecond = () => {
+     setTimeout(() => {
+     console.log('async second start');    
+     }, 2000);
+
+ }
+ afirst();
+
     </script>
 </body>
 </html>
