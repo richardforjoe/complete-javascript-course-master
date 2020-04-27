@@ -32,12 +32,9 @@ class Town {
         this.name = name;
         this.buildYear = buildYear;
     }
-
     calculateAge() { //Method for class
         console.log(age6s); 
     }
-
-
 }
 
 class Park extends Town {
@@ -46,7 +43,6 @@ class Park extends Town {
         this.numberOfTrees = numberOfTrees;
         this.parkArea = parkArea;
     }
-
     treeDensity() {
         const density = this.numberOfTrees/this.parkArea;
         console.log(`${this.name} has a tree density of ${density}`)
@@ -72,8 +68,15 @@ class Street extends Town {
     }
 } 
 
-const allParks = [new Park('Green Park',1987,1000,0.2), new Park('National Park', 1894, 3541, 2.9),new Park('Oak Park', 2000, 10541, 5.9)]
-const allStreets = [new Street('Swarbrick avenue', 1880,1.1,4),new Street('Swarbrick garden', 1990,1.1,5),new Street('Swarbrick grove', 1980,9.1),new Street('Swarbrick street', 1970,0.1,2)]
+const allParks = [
+    new Park('Green Park',1987,1000,0.2), 
+    new Park('National Park', 1894, 3541, 2.9),
+    new Park('Oak Park', 2000, 10541, 5.9)]
+const allStreets = [
+    new Street('Swarbrick avenue', 1880,1.1,4),
+    new Street('Swarbrick garden', 1990,1.1,5),
+    new Street('Swarbrick grove', 1980,9.1),
+    new Street('Swarbrick street', 1970,0.1,2)]
 
 function calc(arr){
     // ES5 method to accumulate all values into single value

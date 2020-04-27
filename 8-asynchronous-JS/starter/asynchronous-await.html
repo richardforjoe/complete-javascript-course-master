@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asynchronous JavaScript - Await</title>
+</head>
+<body>
+    <h1>Asynchronous JavaScript - Await</h1>
+    <script>
+ //Synchronous code - await
+
+
+
+ const getIDs = new Promise((resolve,reject) => {
+// Executor function - takes 2 arguemens - resolve + reject
+//contains an Ajax call to server
+setTimeout(() => {
+    resolve([1234,4564,52234]); //return this
+    //reject("There was an Error");
+}, 1500);
+ });
+
+ const getReceipep = recID => {
+    return new Promise((resolve, reject) => {
+        setTimeout(ID => {
+        const receipe = {title: 'Fresh tomato pasta', publisher: 'Jonas'};
+        resolve(`${ID}: ${receipe.title}`);    
+        }, 1500, recID);
+    
+    })
+ };
+
+ const getRelated = publisher => { //featch recipe of related
+    return new Promise((resolve,reject) => {
+        setTimeout(pub => {
+            const receipe2 = {title: 'Italian Pizza', publisher: 'Jonas'}
+            resolve(`${receipe2.publisher}: ${receipe2.title}`);
+        }, 1500, publisher);
+    })
+ }
+//  getIDs
+//  .then(IDs => { //callback funcyion
+//      console.log(IDs);
+//      return getReceipep(IDs[2]);
+//  })
+//  .then(receipe => { //fulfilment of above promise
+//      console.log(receipe);
+//      return getRelated();
+//  })
+//  .then(recipe => { //related recipe
+//      console.log(recipe);
+//  }) 
+//  .catch(error => {
+//      console.log(error);
+//  })
+
+async function getRecipesAW() {
+//Async function - This function keeps running in the background and returns a promise. 
+//- one or more await expressions
+    const IDs = await getIDs; // waits for promise value 
+    console.log(IDs);
+    const recipe = await getReceipep(IDs[2]);
+    console.log(recipe);
+    const related = await getRelated();
+    console.log(related);
+
+    return recipe;
+}
+
+getRecipesAW().then(result => console.log(`This is the result: ${result}`));
+// const rec = getRecipesAW();
+// console.log(rec);
+
+getRecipesAW();
+
+//Ajax - Asynchronous JavaScript And XML
+//Fetch - 
+// - https://www.metaweather.com/api/ - 
+//Access-control-allow-origin issue - CORS needs to be implimented 
+//convert from json to javascript
+const cors = 'https://crossorigin.me/';
+
+const url = 'https://625b4fb7-8ca3-495f-af76-130caf39479b.mock.pstmn.io/dev/luna/timeline';
+function getEventByPosition(id,index){
+    fetch(url+`?id=${id}`)
+        .then(result => {
+        console.log(result);
+   return result.json();
+})
+    .then(data => {
+    console.log(data.timeline[index]);
+})
+    .catch(error => {
+    console.log(error)
+});
+}
+
+getEventByPosition('lei_av',2);
+getEventByPosition('lei_av',3);
+// Using async and await
+
+async function getAsEventTeams(id,index) {
+    try {
+    const result = await fetch(url+`?id=${id}`);
+    const data = await result.json();
+    console.log("----------");
+    console.log(data.timeline[index]);
+    return data;
+    } catch(error){
+        console.log(error);
+    }
+    
+}
+getAsEventTeams('lei_av',0);
+let data1;
+getAsEventTeams('lei_av',1).then(data => {
+    data1 = data;
+console.log(data1);
+});
+
+
+    </script>
+</body>
+</html>
