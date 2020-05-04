@@ -36,6 +36,9 @@
  * - Current recipe object
  * - Liked recipes
  */
+import Search from './models/Search';
+import * as searchView from './views/searchView'
+import { elements } from './views/base';
 
  const state = {};
 
@@ -43,7 +46,9 @@
 
  const controlSearch = async() => { //needs to be async function to use await
      //1) Get query from view
-     const query = 'pizza' //TODO
+     const query = searchView.getInput() //TODO
+     console.log(searchView);
+     
 
      if (query) {
          //2) New search object and add to state
@@ -60,12 +65,12 @@
  
  }
 
- document.querySelector('.search').addEventListener('submit', e => {
+ elements.searchForm.addEventListener('submit', e => {
     e.preventDefault(); //prevents the page reloading
     controlSearch();
  });
 
-import Search from './models/Search';
+
 
 //const search = new Search('pizza');
 console.log("----index.js----");
