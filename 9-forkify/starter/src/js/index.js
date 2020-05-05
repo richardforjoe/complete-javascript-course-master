@@ -55,12 +55,16 @@ import { elements } from './views/base';
          state.search = new Search(query);
 
          // 3) Prepare UI for search results
+        searchView.clearInput();
+        searchView.clearResults();
 
          //4) Search for recipes
          await state.search.getSearchResults(); //promise
 
          //5) render results on UI
-        console.log(state.search.recipes);
+         console.log(state.search.recipes);
+         searchView.renderResults(state.search.recipes);
+        //console.log(state.search.recipes); //array with results - function to receive results and print them
      }
  
  }
@@ -74,5 +78,5 @@ import { elements } from './views/base';
 
 //const search = new Search('pizza');
 console.log("----index.js----");
-console.log(search);
-search.getSearchResults();
+//console.log(search);
+//search.getSearchResults();
