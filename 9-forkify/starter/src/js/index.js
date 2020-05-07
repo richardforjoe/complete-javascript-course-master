@@ -37,13 +37,15 @@
  * - Liked recipes
  */
 import Search from './models/Search';
-import * as searchView from './views/searchView'
-import { elements } from './views/base';
+import * as searchView from './views/searchView';
+import Recipe from './models/Recipe';
+import { elements, renderLoader, clearLoader  } from './views/base';
 
  const state = {};
 
  //add event listner for search - event listenrs go into the controller
 
+ //** Search controller */
  const controlSearch = async() => { //needs to be async function to use await
      //1) Get query from view
      const query = searchView.getInput() //TODO
@@ -57,11 +59,13 @@ import { elements } from './views/base';
          // 3) Prepare UI for search results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes)
 
          //4) Search for recipes
          await state.search.getSearchResults(); //promise
 
-         //5) render results on UI
+         //5) render results on UI 1
+         clearLoader();
          console.log(state.search.recipes);
          searchView.renderResults(state.search.recipes);
         //console.log(state.search.recipes); //array with results - function to receive results and print them
@@ -80,3 +84,24 @@ import { elements } from './views/base';
 console.log("----index.js----");
 //console.log(search);
 //search.getSearchResults();
+
+//event deligation - when elements for the listener don't yet exist
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10); //base 10
+        console.log(goToPage);
+        
+        searchView.clearResults();
+        searchView.renderResults(state.search.recipes, goToPage);
+    }
+});
+
+//Recipe Controller
+
+const receipt = new Recipe(47746);
+console.log("**********");
+receipt.getRecipe();
+receipt.calcServings();
+receipt.calcTime();
+console.log(receipt);

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { parameter } from '../config';
 
 export default class Search {
     //define constructor method
@@ -10,7 +11,7 @@ export default class Search {
 async getSearchResults() { // async functions return a promise
      
      try {
-        const parameter = "q"
+        //const parameter = "q"
         const result = await axios(`https://forkify-api.herokuapp.com/api/search?${parameter}=${this.query}`);
         this.recipes = result.data.recipes    
         //console.log(this.recipes); 
