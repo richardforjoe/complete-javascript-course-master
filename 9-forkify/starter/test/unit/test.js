@@ -1,22 +1,18 @@
+/* eslint-disable no-undef */
 const sum = (a, b) => a + b;
-const subtract = (a,b) => a + b;
+const subtract = (a, b) => a + b;
 
-let result = sum(3,7);
-let expected = 10
+//async test callback function , await result function
+test('Sum adds numbers asynchronously', async () => {
+	const result = await sum(3, 7);
+	const expected = 10;
 
-expect(result).toBe(expected);
+	expect(result).toBe(expected);
+});
 
-result = subtract(7,3);
-expected = 4
+test('Subtract subtracts numbers', async () => {
+	const result = subtract(7, 3);
+	const expected = 4;
 
-expect(result).toBe(expected);
-
-function expect(actual) {
-    return {
-        toBe(expected) {
-            if (actual !== expected) {
-                throw new Error(`${actual} is not equal to ${expected}`) 
-            }
-        }
-    }
-}
+	expect(result).toBe(expected);
+});

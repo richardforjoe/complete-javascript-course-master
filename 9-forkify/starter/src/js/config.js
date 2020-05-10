@@ -1,1 +1,1 @@
-export const parameter = "q";
+export const parameter = 'q';
