@@ -11,7 +11,7 @@ test('Sum adds numbers asynchronously', async () => {
 });
 
 test('Subtract subtracts numbers', async () => {
-	const result = subtract(7, 3);
+	const result = subtract(7, 2);
 	const expected = 4;
 
 	expect(result).toBe(expected);
